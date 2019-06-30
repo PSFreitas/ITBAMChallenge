@@ -2,6 +2,7 @@ package com.itbamchallenge.activity
 
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,7 +24,13 @@ class ListOfProductsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_list_of_products)
 
         initializeProductsList()
+        setSupportActionBar(tb_superior_menu)
+        supportActionBar!!.title = ""
+    }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.superior_menu,menu)
+        return super.onCreateOptionsMenu(menu)
     }
 
     fun initializeProductsList(){
