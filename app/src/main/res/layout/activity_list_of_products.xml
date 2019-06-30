@@ -15,11 +15,24 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/product_list_recyclerview">
+            app:layout_constraintBottom_toTopOf="@id/tv_welcome_text">
 
 
     </androidx.appcompat.widget.Toolbar>
 
+    <TextView
+        android:id="@+id/tv_welcome_text"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Olá, André!Confira nossas ofertas!"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tb_superior_menu"
+        app:layout_constraintBottom_toTopOf="@id/product_list_recyclerview"
+    >
+
+    </TextView>
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/product_list_recyclerview"
@@ -28,7 +41,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tb_superior_menu"
+            app:layout_constraintTop_toBottomOf="@id/tv_welcome_text"
             app:layout_constraintWidth_percent="80"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"/>
