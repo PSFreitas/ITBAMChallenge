@@ -33,7 +33,9 @@ class ProductListAdapter(private var products : List<Product>,
 
         fun bindView(product: Product){
             val productName = itemView.product_item_name
+            val productPrice = itemView.product_item_price
             productName.text = product.name
+            productPrice.text = product.actualPrice
         }
 
     }
