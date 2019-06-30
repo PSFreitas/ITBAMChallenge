@@ -63,8 +63,9 @@ class ListOfProductsActivity : AppCompatActivity() {
 
                 }
                 itemListener = object : ProductListAdapter.itemClickListener {
-                    override fun itemClick() {
+                    override fun itemClick(product: Product) {
                         val intent = Intent(context, ProductDetailsActivity::class.java)
+                        intent.putExtra("product",product)
                         startActivity(intent)
                     }
 

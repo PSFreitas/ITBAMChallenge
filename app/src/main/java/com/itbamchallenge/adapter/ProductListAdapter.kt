@@ -19,7 +19,7 @@ class ProductListAdapter(
     var itemListener : itemClickListener? = null
 
     interface itemClickListener{
-        fun itemClick()
+        fun itemClick(product: Product)
     }
 
     interface buttonClickListener{
@@ -47,7 +47,7 @@ class ProductListAdapter(
         }
         holder?.let{
             it.itemView.setOnClickListener{
-                itemListener?.itemClick()
+                itemListener?.itemClick(products[position])
             }
         }
     }
