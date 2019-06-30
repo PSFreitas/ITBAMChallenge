@@ -18,5 +18,7 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".activity.ProductDetailsActivity"/>
+
     </application>
 </manifest>

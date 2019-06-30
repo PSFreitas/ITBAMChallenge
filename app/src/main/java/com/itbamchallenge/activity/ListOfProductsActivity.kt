@@ -1,10 +1,11 @@
 package com.itbamchallenge.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.itbamchallenge.R
@@ -29,11 +30,11 @@ class ListOfProductsActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.superior_menu,menu)
+        menuInflater.inflate(R.menu.superior_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
-    fun initializeProductsList(){
+    fun initializeProductsList() {
         val call = ProductsService.create().getProducts()
 
         call.enqueue(object : Callback<ProductResponse> {
@@ -52,11 +53,24 @@ class ListOfProductsActivity : AppCompatActivity() {
 
     private fun populateProductList(products: List<Product>) {
         findViewById<RecyclerView>(R.id.product_list_recyclerview).apply {
-           setHasFixedSize(true)
-           layoutManager = LinearLayoutManager(context)
-           adapter = ProductListAdapter(products,context)
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(context)
+            adapter = ProductListAdapter(products, context).apply {
+                buttonListener = object : ProductListAdapter.buttonClickListener {
+                    override fun buttonClick() {
+                        Toast.makeText(context, "Adicionado ao carrinho!", Toast.LENGTH_SHORT).show()
+                    }
 
-       }
+                }
+                itemListener = object : ProductListAdapter.itemClickListener {
+                    override fun itemClick() {
+                        val intent = Intent(context, ProductDetailsActivity::class.java)
+                        startActivity(intent)
+                    }
+
+                }
+            }
+        }
     }
 
 }

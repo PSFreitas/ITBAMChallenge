@@ -15,6 +15,17 @@ class ProductListAdapter(
     private var context: Context
 ) : RecyclerView.Adapter<ProductListAdapter.ViewHolder>() {
 
+    var buttonListener : buttonClickListener? = null
+    var itemListener : itemClickListener? = null
+
+    interface itemClickListener{
+        fun itemClick()
+    }
+
+    interface buttonClickListener{
+        fun buttonClick()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.product_item, parent, false)
         return ViewHolder(view)
@@ -29,7 +40,18 @@ class ProductListAdapter(
         holder?.let {
             it.bindView(product)
         }
+        holder?.let{
+            it.itemView.btn_add_to_cart.setOnClickListener{
+                buttonListener?.buttonClick()
+            }
+        }
+        holder?.let{
+            it.itemView.setOnClickListener{
+                itemListener?.itemClick()
+            }
+        }
     }
+
 
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
