@@ -25,10 +25,12 @@ class ProductDetailsActivity : AppCompatActivity() {
     private fun initViews() {
         product_item_name.text = product.name
         product_item_price.text = product.actualPrice
-        Picasso
-            .get()
-            .load(product.image)
-            .into(product_item_picture)
+        if(product.image.isNotEmpty()){
+            Picasso
+                .get()
+                .load(product.image)
+                .into(product_item_picture)
+        }
 
     }
 }
