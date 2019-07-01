@@ -68,6 +68,8 @@ class ProductListAdapter(
                 Picasso
                     .get()
                     .load(product.image)
+                    .resize(250,250)
+                    .centerCrop()
                     .into(productPicture)
             }
 
