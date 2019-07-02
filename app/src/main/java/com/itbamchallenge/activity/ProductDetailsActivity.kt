@@ -13,7 +13,8 @@ class ProductDetailsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        product = intent.getParcelableExtra("product")
+        if(intent.hasExtra(PRODUCT_EXTRA))
+            product = intent.getParcelableExtra("product")
 
         setContentView(R.layout.activity_product_details)
         initViews()
@@ -34,5 +35,8 @@ class ProductDetailsActivity : AppCompatActivity() {
                 .into(product_item_picture)
         }
 
+    }
+    companion object{
+        val PRODUCT_EXTRA: String = "product"
     }
 }

@@ -4,20 +4,23 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
-class Size() : Parcelable {
-
+data class Size(
     @SerializedName(value = "available")
-    var available: Boolean = false
+    var available: Boolean = false,
 
     @SerializedName(value = "size")
-    var size: String = ""
+    var size: String = "",
 
     @SerializedName(value = "sku")
     var sky: String = ""
+) : Parcelable {
+
 
     constructor(parcel: Parcel) : this() {
         available = parcel.readByte() != 0.toByte()
+
         size = parcel.readString().toString()
+
         sky = parcel.readString().toString()
     }
 

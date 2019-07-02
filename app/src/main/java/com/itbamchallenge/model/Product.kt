@@ -5,7 +5,7 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
 
-class Product(
+data class Product(
     @SerializedName(value = "name")
     val name: String = "",
 
@@ -44,31 +44,53 @@ class Product(
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString().toString(),
+
         parcel.readString().toString(),
+
         parcel.readString().toString(),
+
         parcel.readString().toString(),
+
         parcel.readString().toString(),
+
         parcel.readByte() != 0.toByte(),
+
         parcel.readString().toString(),
+
         parcel.readString().toString(),
+
         parcel.readString().toString(),
+
         parcel.readString().toString(),
+
         parcel.readString().toString(),
+
         parcel.createTypedArrayList(Size)!!
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(name)
+
         parcel.writeString(style)
+
         parcel.writeString(codeColor)
+
         parcel.writeString(colorSlug)
+
         parcel.writeString(color)
+
         parcel.writeByte(if (onSale) 1 else 0)
+
         parcel.writeString(regularPrice)
+
         parcel.writeString(actualPrice)
+
         parcel.writeString(discountPercentage)
+
         parcel.writeString(installments)
+
         parcel.writeString(image)
+
         parcel.writeTypedList(sizes)
     }
 

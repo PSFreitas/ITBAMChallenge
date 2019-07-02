@@ -13,21 +13,47 @@ import com.itbamchallenge.adapter.ProductListAdapter
 import com.itbamchallenge.model.Product
 import com.itbamchallenge.network.ProductResponse
 import com.itbamchallenge.network.ProductsService
-import kotlinx.android.synthetic.main.activity_list_of_products.*
+import kotlinx.android.synthetic.main.activity_product_details.view.*
+import kotlinx.android.synthetic.main.activity_product_list.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ListOfProductsActivity : AppCompatActivity() {
+class ProductListActivity : AppCompatActivity() {
+
+    private lateinit var adapter: ProductListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_list_of_products)
-
+        setContentView(R.layout.activity_product_list)
+        setupRecyclerView()
         initializeProductsList()
         setSupportActionBar(tb_superior_menu)
         supportActionBar!!.title = ""
     }
+
+    private fun setupRecyclerView() {
+        product_list_recyclerview.setHasFixedSize(true)
+        product_list_recyclerview.layoutManager = LinearLayoutManager(this)
+        adapter = ProductListAdapter().apply {
+            buttonListener = object : ProductListAdapter.buttonClickListener {
+                override fun buttonClick() {
+                    Toast.makeText(this@ProductListActivity, "Adicionado ao carrinho!", Toast.LENGTH_SHORT).show()
+                }
+
+            }
+            itemListener = object : ProductListAdapter.itemClickListener {
+                override fun itemClick(product: Product) {
+                    val intent = Intent(this@ProductListActivity, ProductDetailsActivity::class.java)
+                    intent.putExtra(ProductDetailsActivity.PRODUCT_EXTRA, product)
+                    startActivity(intent)
+                }
+
+            }
+        }
+        product_list_recyclerview.adapter = adapter
+    }
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.superior_menu, menu)
@@ -51,27 +77,7 @@ class ListOfProductsActivity : AppCompatActivity() {
 
     }
 
-    private fun populateProductList(products: List<Product>) {
-        findViewById<RecyclerView>(R.id.product_list_recyclerview).apply {
-            setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(context)
-            adapter = ProductListAdapter(products, context).apply {
-                buttonListener = object : ProductListAdapter.buttonClickListener {
-                    override fun buttonClick() {
-                        Toast.makeText(context, "Adicionado ao carrinho!", Toast.LENGTH_SHORT).show()
-                    }
+    private fun populateProductList(products: List<Product>) = adapter.feedProducts(products)
 
-                }
-                itemListener = object : ProductListAdapter.itemClickListener {
-                    override fun itemClick(product: Product) {
-                        val intent = Intent(context, ProductDetailsActivity::class.java)
-                        intent.putExtra("product",product)
-                        startActivity(intent)
-                    }
-
-                }
-            }
-        }
-    }
 
 }
