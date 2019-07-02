@@ -23,8 +23,10 @@ class ProductDetailsActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
-        product_item_name.text = product.name
+        product_item_name.text =  product.name
         product_item_price.text = product.actualPrice
+        product_item_color.text = product.color
+        product_item_installments.text = product.installments
         if(product.image.isNotEmpty()){
             Picasso
                 .get()
