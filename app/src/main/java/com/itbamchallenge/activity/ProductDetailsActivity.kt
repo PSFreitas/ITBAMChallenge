@@ -7,6 +7,9 @@ import com.itbamchallenge.model.Product
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_product_details.*
 
+/**
+ * Exibe a tela de detalhes do produto.
+ */
 class ProductDetailsActivity : AppCompatActivity() {
 
     lateinit var product : Product
@@ -17,13 +20,14 @@ class ProductDetailsActivity : AppCompatActivity() {
             product = intent.getParcelableExtra("product")
 
         setContentView(R.layout.activity_product_details)
-        initViews()
+        populateProductDetails()
         btn_return.setOnClickListener{
             finish()
         }
     }
 
-    private fun initViews() {
+    //Inicializa as views com os dados do produto.
+    private fun populateProductDetails() {
         product_item_name.text =  product.name
         product_item_price.text = product.actualPrice
         product_item_color.text = product.color

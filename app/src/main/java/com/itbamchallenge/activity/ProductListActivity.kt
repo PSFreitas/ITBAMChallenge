@@ -19,6 +19,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * Exibe a tela produtos.
+ */
 class ProductListActivity : AppCompatActivity() {
 
     private lateinit var adapter: ProductListAdapter
@@ -32,6 +35,7 @@ class ProductListActivity : AppCompatActivity() {
         supportActionBar!!.title = ""
     }
 
+    //Inicializa a RecyclerView e o Adapter
     private fun setupRecyclerView() {
         product_list_recyclerview.setHasFixedSize(true)
         product_list_recyclerview.layoutManager = LinearLayoutManager(this)
@@ -55,11 +59,13 @@ class ProductListActivity : AppCompatActivity() {
     }
 
 
+    //Inicializa o menu superior
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.superior_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
+    //Inicializa a lista de produtos com a resposta da requisição.
     fun initializeProductsList() {
         val call = ProductsService.create().getProducts()
 
@@ -77,6 +83,7 @@ class ProductListActivity : AppCompatActivity() {
 
     }
 
+    //Popula a lista de produtos do adapter
     private fun populateProductList(products: List<Product>) = adapter.feedProducts(products)
 
 

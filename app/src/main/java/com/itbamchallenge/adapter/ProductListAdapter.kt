@@ -9,11 +9,15 @@ import com.itbamchallenge.model.Product
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.list_item_product.view.*
 
+/**
+ * Responsável por realizar a ligação entre os dados fornecidos e a view.
+ */
 class ProductListAdapter : RecyclerView.Adapter<ProductListAdapter.ViewHolder>() {
 
-    private  var products: MutableList<Product> = mutableListOf()
+    private var products: MutableList<Product> = mutableListOf()
 
     var buttonListener: buttonClickListener? = null
+
     var itemListener: itemClickListener? = null
 
     interface itemClickListener {
@@ -35,22 +39,20 @@ class ProductListAdapter : RecyclerView.Adapter<ProductListAdapter.ViewHolder>()
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val product = products[position]
-        holder?.let {
-            it.bindView(product)
-        }
-        holder?.let {
+        holder.bindView(product)
+        holder.let {
             it.itemView.btn_add_to_cart.setOnClickListener {
                 buttonListener?.buttonClick()
             }
         }
-        holder?.let {
+        holder.let {
             it.itemView.setOnClickListener {
                 itemListener?.itemClick(products[position])
             }
         }
     }
 
-    fun feedProducts(products: List<Product>){
+    fun feedProducts(products: List<Product>) {
         this.products.addAll(products)
         notifyDataSetChanged()
     }

@@ -4,6 +4,15 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
+
+/**
+ * Classe de Tamanho que segura os dados recebidos da API
+ * @constructor Cria um tamanho com os dados passados
+ *
+ * @property available Se o tamanho está disponível
+ * @property size Tipo de tamanho do produto
+ * @property sku Código do tamanho do produto
+ */
 data class Size(
     @SerializedName(value = "available")
     var available: Boolean = false,
@@ -12,7 +21,7 @@ data class Size(
     var size: String = "",
 
     @SerializedName(value = "sku")
-    var sky: String = ""
+    var sku: String = ""
 ) : Parcelable {
 
 
@@ -21,7 +30,7 @@ data class Size(
 
         size = parcel.readString().toString()
 
-        sky = parcel.readString().toString()
+        sku = parcel.readString().toString()
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {

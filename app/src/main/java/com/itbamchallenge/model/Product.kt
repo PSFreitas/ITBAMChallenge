@@ -4,7 +4,23 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
-
+/**
+ * Classe de Produto responsável por segurar os dados recebidos da API.
+ *
+ * @constructor Cria um produto com os dados passados
+ *
+ * @property name Nome do Produto
+ * @property style Codigo do estilo do produto
+ * @property codeColor Codigo da cor do produto
+ * @property color Cor do produto
+ * @property onSale Status de promoção do produto
+ * @property regularPrice Preço regular do produto
+ * @property actualPrice Preço do produto se estiver em promoção ou não
+ * @property discountPercentage Porcentagem de desconto do produto
+ * @property installments Quantidade de Parcelas do Produto
+ * @property image Caminho da imagem do produto
+ * @property sizes Tamanhos do Produto
+ */
 data class Product(
     @SerializedName(value = "name")
     val name: String = "",

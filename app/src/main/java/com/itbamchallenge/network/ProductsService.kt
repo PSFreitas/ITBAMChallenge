@@ -1,11 +1,13 @@
 package com.itbamchallenge.network
 
-import com.itbamchallenge.model.Product
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
+/*
+* Classe responsável por realizar a conexão com a API
+* */
 interface ProductsService {
 
     @GET(value = "/v2/59b6a65a0f0000e90471257d")
